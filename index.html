@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Happy Birthday Shizuka ❤️</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+  }
+  body {
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+  }
+
+  /* ---------- BACKGROUND ---------- */
+  .bg {
+    position: fixed;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+      url('Nobitashizuka.jpeg') center/cover no-repeat;
+    z-index: -2;
+  }
+
+  /* ---------- Password ---------- */
+  #lock {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .lockBox {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 28px;
+    border-radius: 18px;
+    width: 85%;
+    max-width: 320px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+  }
+  .lockBox input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 16px;
+  }
+  .lockBox button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  /* ---------- Stars ---------- */
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    animation: twinkle 3s infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* ---------- Teddy ---------- */
+  #teddy {
+    margin-top: 55vh;
+    text-align: center;
+    font-size: 60px;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* ---------- Text ---------- */
+  #typing {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 10px;
+    min-height: 32px;
+  }
+
+  /* ---------- Buttons ---------- */
+  button {
+    display: block;
+    margin: 18px auto;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  #startBtn,
+  #nextBtn {
+    display: none;
+  }
+
+  /* ---------- Letter ---------- */
+  #letter {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 20px;
+  }
+  .letterBox {
+    max-width: 420px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px 25px;
+    border-radius: 25px;
+    text-align: center;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 20px #ff4d6d;
+    color: #ffe6f0;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .letterBox h2 {
+    color: #ffb3c6;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    text-shadow: 0 0 10px #ff4d6d;
+  }
+  .letterBox p {
+    line-height: 1.6;
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  /* ---------- Birthday Blast ---------- */
+  .confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    top: -10px;
+    animation: fall 4s linear infinite;
+    border-radius: 2px;
+  }
+  @keyframes fall {
+    to {
+      transform: translateY(110vh) rotate(360deg);
+    }
+  }
+
+  /* ---------- Heart & Kiss emoji animation ---------- */
+  .emoji {
+    position: fixed;
+    font-size: 24px;
+    opacity: 1;
+    animation: floatUp 3s forwards;
+    user-select: none;
+    pointer-events: none;
+  }
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-150px) scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  /* ---------- Big Pink Heart ---------- */
+  #bigHeart {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    font-size: 120px;
+    color: #ff4d6d;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    pointer-events: none;
+    user-select: none;
+    animation-fill-mode: forwards;
+  }
+  @keyframes heartFade {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+  }
+
+  /* Thank You message */
+  #thankYouMsg {
+    color: #ff4d6d;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+    text-shadow: 0 0 8px #ff4d6d;
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="bg"></div>
+
+  <!-- Password -->
+  <div id="lock">
+    <div class="lockBox">
+      <h2>🔐 Enter Password</h2>
+      <input type="password" id="pass" placeholder="Enter Password" />
+      <button onclick="unlock()">Submit</button>
+    </div>
+  </div>
+
+  <audio id="song" src="tum_se_hi.mp3" preload="auto"></audio>
+
+  <div id="teddy">🧸</div>
+  <div id="typing"></div>
+
+  <button id="startBtn" onclick="startSurprise()">✨ Tap to Start Surprise ✨</button>
+  <button id="nextBtn" onclick="openLetter()">Next ➜</button>
+
+  <div id="letter">
+    <div class="letterBox">
+      <h2>My Love ❤️</h2>
+      <p>
+        From the moment our hearts chose each other on <b>17th June</b>,<br />
+        my world became warmer, brighter, and more meaningful.<br /><br />
+        Just like this beautiful day,<br />
+        you light up my life in every possible way.<br /><br />
+        Happy Birthday Shizuka 🎂<br />
+        I love you, today and always 🌙✨
+      </p>
+      <button id="wishBtn" onclick="wishBirthday()">🎉 Wish Happy Birthday 🎉</button>
+      <div id="thankYouMsg"></div>
+    </div>
+  </div>
+
+  <div id="bigHeart">❤️</div>
+
+<script>
+  /* stars */
+  for (let i = 0; i < 70; i++) {
+    let s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDelay = Math.random() * 3 + 's';
+    document.body.appendChild(s);
+  }
+
+  /* confetti */
+  function blast() {
+    for (let i = 0; i < 120; i++) {
+      let c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + '%';
+      c.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+      c.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 4000);
+    }
+  }
+
+  function unlock() {
+    const pass = document.getElementById('pass');
+    if (pass.value === '1234') {
+      document.getElementById('lock').style.display = 'none';
+      document.getElementById('startBtn').style.display = 'block';
+    } else {
+      alert('Wrong password');
+    }
+  }
+
+  function startSurprise() {
+    const song = document.getElementById('song');
+    song.currentTime = 0;
+    song.muted = false;
+    song.play().catch(() => {});
+    blast();
+    typeText('Happy Birthday Shizuka ❤️');
+    document.getElementById('startBtn').style.display = 'none';
+  }
+
+  function typeText(t) {
+    let i = 0;
+    let box = document.getElementById('typing');
+    box.innerHTML = '';
+    let inter = setInterval(() => {
+      box.innerHTML += t.charAt(i);
+      i++;
+      if (i >= t.length) {
+        clearInterval(inter);
+        document.getElementById('nextBtn').style.display = 'block';
+      }
+    }, 80);
+  }
+
+  function openLetter() {
+    document.getElementById('letter').style.display = 'block';
+  }
+
+  function wishBirthday() {
+    blast();
+
+    // Create multiple heart and kiss emojis randomly floating up
+    const emojis = ['❤️', '💋'];
+    for (let i = 0; i < 50; i++) {
+      let emoji = document.createElement('div');
+      emoji.className = 'emoji';
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.top = Math.random() * 100 + 'vh';
+      emoji.style.fontSize = (12 + Math.random() * 24) + 'px';
+      document.body.appendChild(emoji);
+      // Remove emoji after animation
+      setTimeout(() => emoji.remove(), 3000);
+    }
+
+    // Show big pink heart animation
+    const bigHeart = document.getElementById('bigHeart');
+    bigHeart.style.animation = 'heartFade 3s forwards';
+
+    // Remove animation so it can be triggered again on next click
+    setTimeout(() => {
+      bigHeart.style.animation = 'none';
+    }, 3000);
+
+    // Thank you message
+    const thankYou = document.getElementById('thankYouMsg');
+    thankYou.textContent = 'Thank you for the wishes! 🎉😊';
+
+    // Disable wish button
+    document.getElementById('wishBtn').disabled = true;
+  }
+</script>
+
+</body>
+</html>
